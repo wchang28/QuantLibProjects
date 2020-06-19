@@ -26,7 +26,6 @@ namespace QuantLib {
 }
 #endif
 
-
 using namespace QuantLib;
 
 int main()

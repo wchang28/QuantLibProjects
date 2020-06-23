@@ -30,6 +30,32 @@ using namespace QuantLib;
 
 int main()
 {
+	Calendar calendar = TARGET();
+
+	auto fedFundsIndex = std::make_shared<FedFunds>();
+	auto usdLiborONIndex = std::make_shared<USDLiborON>();
+	auto usdLibor3mIndex = std::make_shared<USDLibor>(Period(3, Months));
+
+	std::vector<std::shared_ptr<IborIndex>> indices(3);
+	indices[0] = fedFundsIndex;
+	indices[1] = usdLiborONIndex;
+	indices[2] = usdLibor3mIndex;
+
+	for (auto p = indices.begin(); p != indices.end(); ++p) {
+		auto pIndex = (*p);
+		auto fixingDays = pIndex->fixingDays();	// InterestRateIndex
+		auto fixingCalendar = pIndex->fixingCalendar();	// InterestRateIndex
+		auto businessDayConvention = pIndex->businessDayConvention();	// IborIndex
+		auto endOfMonth = pIndex->endOfMonth();	// IborIndex
+		auto dayCounter = pIndex->dayCounter();	// InterestRateIndex
+		auto currency = pIndex->currency();	// InterestRateIndex
+	}
+
+	//SwapIndex si();
+	//SwapRateHelper helper_1();
+	//OISRateHelper helper_2();
+
+	/*
 	Calendar calendar = JointCalendar(UnitedKingdom(UnitedKingdom::Exchange), UnitedStates(UnitedStates::Settlement), JoinHolidays);
 
 	Date settlementDate(18, February, 2015);
@@ -144,7 +170,7 @@ int main()
 	depoFutSwapInstruments.push_back(s4y);
 	depoFutSwapInstruments.push_back(s5y);
 	depoFutSwapInstruments.push_back(s6y);
-
+*/
 /*
 	DayCounter termStructureDayCounter = Actual360();
 	boost::shared_ptr<YieldTermStructure> depoFutSwapTermStructure(new PiecewiseYieldCurve<Discount,

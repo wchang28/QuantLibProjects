@@ -229,7 +229,7 @@ int main()
 	std::cout << " Zero Rate 1 Week : " << depoFutSwapTermStructure->zeroRate(settlementDate + 1 * Weeks, termStructureDayCounter, Simple) << std::endl;
 	*/
 
-	getchar();
+	//getchar();
 	return 0;
 }
 
